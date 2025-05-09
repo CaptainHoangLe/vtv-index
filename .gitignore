@@ -89,15 +89,12 @@ typings/
 /ghost/core/content/logs/*
 /ghost/core/content/settings/*
 /ghost/core/content/apps/**/*
-/ghost/core/content/themes/**/*
 /ghost/core/content/images/**/*
 /ghost/core/content/media/**/*
 /ghost/core/content/files/**/*
 /ghost/core/content/public/*
 /ghost/core/content/adapters/storage/**/*
 /ghost/core/content/adapters/scheduling/**/*
-/ghost/core/content/themes/casper
-/ghost/core/content/themes/source
 !/ghost/core/README.md
 !/ghost/core/content/**/README.md
 
