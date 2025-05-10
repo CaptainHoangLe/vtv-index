@@ -59,7 +59,7 @@ jobs:
             vtv-index:
               image: ${{ env.IMAGE_NAME }}:latest
               ports:
-                - "80:2368"
+                - "2368:2368"
               volumes:
                 - /home/${{ secrets.SERVER_USER }}/ghost/content:/app/content
               restart: always

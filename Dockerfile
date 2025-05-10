@@ -12,4 +12,4 @@ RUN yarn build
 
 EXPOSE 2368
 
-CMD ["yarn", "start"]
+CMD ["node", "ghost/core/index.js"]
