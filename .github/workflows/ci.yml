@@ -58,9 +58,8 @@ jobs:
           services:
             vtv-index:
               image: ${{ env.IMAGE_NAME }}:latest
-              container_name: vtv-index
               ports:
-                - "2368:2368"
+                - "80:2368"
               volumes:
                 - /home/${{ secrets.SERVER_USER }}/ghost/content:/app/content
               restart: always
