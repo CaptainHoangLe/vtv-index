@@ -1,4 +1,10 @@
-FROM node:18-alpine
+ARG NODE_VERSION=20.15.1
+
+# --------------------
+# Base Image
+# --------------------
+FROM node:$NODE_VERSION-bullseye-slim AS base
+
 RUN apt-get update && apt-get install -y python3 make gcc g++ sqlite3
 
 WORKDIR /app
