@@ -1,4 +1,4 @@
-const {SafeString} = require('../services/handlebars');
+const { SafeString } = require('../services/handlebars');
 
 const logging = require('@tryghost/logging');
 const tpl = require('@tryghost/tpl');
@@ -42,23 +42,23 @@ const handleMatch = (data, operator, value) => {
     let result;
 
     switch (operator) {
-    case '!=':
-        result = data !== value;
-        break;
-    case '<':
-        result = data < value;
-        break;
-    case '>':
-        result = data > value;
-        break;
-    case '>=':
-        result = data >= value;
-        break;
-    case '<=':
-        result = data <= value;
-        break;
-    default:
-        result = data === value;
+        case '!=':
+            result = data !== value;
+            break;
+        case '<':
+            result = data < value;
+            break;
+        case '>':
+            result = data > value;
+            break;
+        case '>=':
+            result = data >= value;
+            break;
+        case '<=':
+            result = data <= value;
+            break;
+        default:
+            result = data === value;
     }
 
     return result;
@@ -68,7 +68,6 @@ module.exports = function match(...attrs) {
     // options = options || {};
     // options.hash = options.hash || {};
     // options.data = options.data || {};
-
     const options = attrs.pop();
     const isBlock = _.has(options, 'fn');
     let result;
