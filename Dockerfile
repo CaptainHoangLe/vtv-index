@@ -1,5 +1,4 @@
-FROM node:18-bullseye
-
+FROM node:18-alpine
 RUN apt-get update && apt-get install -y python3 make gcc g++ sqlite3
 
 WORKDIR /app
