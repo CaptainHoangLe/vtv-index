@@ -1,19 +1,12 @@
-FROM node:18-alpine
+FROM node:18-bullseye
+
+RUN apt-get update && apt-get install -y python3 make gcc g++ sqlite3
 
 WORKDIR /app
 
 COPY . .
 
-RUN npm install -g yarn && \
-    yarn install && \
-    yarn setup && \
-    yarn build
+RUN yarn install --ignore-engines && \
+    yarn dev
 
-# Tạo thư mục nội dung
-VOLUME ["/app/content"]
-
-# Cổng mặc định Ghost
 EXPOSE 2368
-
-# Start Ghost
-CMD ["yarn", "start"]
