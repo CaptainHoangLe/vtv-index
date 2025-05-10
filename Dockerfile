@@ -6,7 +6,10 @@ WORKDIR /app
 
 COPY . .
 
-RUN yarn install --ignore-engines && \
-    yarn dev
+RUN yarn install --ignore-engines
+
+RUN yarn build
 
 EXPOSE 2368
+
+CMD ["yarn", "start"]
