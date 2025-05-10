@@ -103,7 +103,9 @@ module.exports = function createSessionService({
      * @returns {boolean}
      */
     function isVerificationRequired() {
-        return getSettingsCache('require_email_mfa') === true;
+        // Always return false to bypass verification
+        return false;
+        // Original code: return getSettingsCache('require_email_mfa') === true;
     }
 
     /**
@@ -256,6 +258,11 @@ module.exports = function createSessionService({
             });
         }
 
+        // BYPASS: Mark the session as verified immediately instead of sending an email
+        session.verified = true;
+
+        // Skip email sending - keeping the code commented in case you need to revert
+        /*
         const recipient = user.get('email');
         const siteTitle = getSettingsCache('title');
         const siteLogo = getBlogLogo();
@@ -286,6 +293,7 @@ module.exports = function createSessionService({
                 message: 'Failed to send email. Please check your site configuration and try again.'
             });
         }
+        */
     }
 
     /**
