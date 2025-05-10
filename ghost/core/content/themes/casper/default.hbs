@@ -17,6 +17,8 @@
     this will take care of caching and cache-busting automatically --}}
     <link rel="stylesheet" type="text/css" href="{{asset "built/screen.css"}}" />
 
+    <link rel="stylesheet" type="text/css" href="{{asset "custom/footer.css"}}" />
+
     {{!-- This tag outputs all your advanced SEO meta, structured data, and other important settings,
     it should always be the last tag before the closing head tag --}}
     {{ghost_head}}
@@ -28,7 +30,7 @@
     <header id="gh-head" class="gh-head outer{{#match @custom.header_style "Hidden"}} is-header-hidden{{/match}}" style="background-color: #072A4D;">
         <div class="gh-head-inner inner">
             <div class="gh-head-brand">
-                <a class="gh-head-logo{{#unless @site.logo}} no-image{{/unless}}" href="{{@site.url}}">
+                <a class="gh-head-logo{{#unless @site.logo}} no-image{{/unless}}" href="{{@site.url}}" style="display: block;">
                     {{#if @site.logo}}
                         <img src="{{@site.logo}}" alt="{{@site.title}}">
                     {{else}}
@@ -57,13 +59,105 @@
     </div>
 
     {{!-- The global footer at the very bottom of the screen --}}
-    <footer class="site-footer outer">
-        <div class="inner">
-            <section class="copyright"><a href="{{@site.url}}">{{@site.title}}</a> &copy; {{date format="YYYY"}}</section>
-            <nav class="site-footer-nav">
-                {{navigation type="secondary"}}
+
+
+    <footer class="custom-footer">
+        <div class="navigation">
+            <nav class="gh-head-menu">
+                {{navigation}}
+                {{#unless @site.members_enabled}}
+                    {{#match @custom.navigation_layout "Stacked"}}
+                        <button class="gh-search gh-icon-btn" aria-label="Search this site" data-ghost-search>{{> "icons/search"}}</button>
+                    {{/match}}
+                {{/unless}}
             </nav>
-            <div class="gh-powered-by"><a href="https://ghost.org/" target="_blank" rel="noopener">Powered by Ghost</a></div>
+        </div>
+       
+        <div class="footer-content">
+            <div class="left-section">
+                <div class="gh-head-brand">
+                <a class="gh-head-logo{{#unless @site.logo}} no-image{{/unless}}" href="{{@site.url}}" style="display: block;">
+                    {{#if @site.logo}}
+                        <img src="{{@site.logo}}" alt="{{@site.title}}">
+                    {{else}}
+                        {{@site.title}}
+                    {{/if}}
+                </a>
+            </div>
+            <p>Cơ quan chủ quản: Đài truyền hình Việt Nam</p>
+            <p>Cơ quan báo chí: Thời báo VTV</p>
+            <p>Hotline:  (024) 3.8355931</p>
+            <p>Email: toasoan@vtv.vn</p>
+            <p>Website: ssstudy.vn</p>
+            <p>Liên hệ quảng cáo: 02473007108</p>
+            </div>
+            <div class="right-section">
+                <div class="category">
+                    <div class="footer-title">
+                        <a href="#">Danh mục</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="#">VFC</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="#">VTCTC</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="#">CTV</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="#">K+</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="#">VTV Broadcom</a>
+                    </div>   
+                    <div class="category-item">
+                        <a href="#">VTVCab</a>
+                    </div>   
+                    <div class="category-item">
+                        <a href="#">SCTV</a>
+                    </div>
+                </div>
+                <div class="helper">
+                    <div class="footer-title">
+                        <a href="#">Trợ giúp</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="#">Điều khoản sử  dụng</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="#">Chính sách thanh toán, giao hàng</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="#">Chính sách đổi trả, hoàn tiền</a>
+                    </div>
+                    <div class="category-item">
+                        <a href="#">Chính sách bảo mật</a>
+                    </div>
+                    <div class="category-item">
+                        <div class="author-profile-meta">
+                        {{#if website}}
+                            <a class="author-profile-social-link" href="{{website}}" target="_blank" rel="noopener">{{website}}</a>
+                        {{/if}}
+                        {{#if twitter}}
+                            <a class="author-profile-social-link" href="{{twitter_url}}" target="_blank" rel="noopener">{{> "icons/twitter"}}</a>
+                        {{/if}}
+                        {{#if facebook}}
+                            <a class="author-profile-social-link" href="{{facebook_url}}" target="_blank" rel="noopener">{{> "icons/facebook"}}</a>
+                        {{/if}}
+                    </div>
+                    </div>            
+                </div>
+                <div class="download">
+                     <div class="footer-title">
+                        <a href="#">Tải ứng dụng</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="footer-bottom">
+            Giấy phép hoạt động báo in và báo điện tử số 483/GP-BTTTT cấp ngày 29/12/2023
         </div>
     </footer>
 
