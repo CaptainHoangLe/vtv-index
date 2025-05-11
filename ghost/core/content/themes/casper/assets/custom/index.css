@@ -1,0 +1,9 @@
+.focus-new {
+  background-color: #f0f0f0;
+  border-radius: 4px;
+  padding: 10px;
+}
+
+.focus-new .stock iframe {
+  width: 100%;
+}

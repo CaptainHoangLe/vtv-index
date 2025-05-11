@@ -19,6 +19,8 @@
 
     <link rel="stylesheet" type="text/css" href="{{asset "custom/footer.css"}}" />
     <link rel="stylesheet" type="text/css" href="{{asset "custom/post.css"}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset "custom/index.css"}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset "custom/global.css"}}" />
 
     {{!-- This tag outputs all your advanced SEO meta, structured data, and other important settings,
     it should always be the last tag before the closing head tag --}}
@@ -29,7 +31,7 @@
 <div class="viewport">
 
     <header id="gh-head" class="gh-head outer{{#match @custom.header_style "Hidden"}} is-header-hidden{{/match}}" style="background-color: #072A4D;">
-        <div class="gh-head-inner inner">
+        <div class="gh-head-inner inner" >
             <div class="gh-head-brand">
                 <a class="gh-head-logo{{#unless @site.logo}} no-image{{/unless}}" href="{{@site.url}}" style="display: block;">
                     {{#if @site.logo}}
@@ -42,7 +44,7 @@
                 <button class="gh-burger"></button>
             </div>
 
-            <nav class="gh-head-menu">
+            <nav class="gh-head-menu" style="display: flex; justify-content: flex-end;">
                 {{navigation}}
                 {{#unless @site.members_enabled}}
                     {{#match @custom.navigation_layout "Stacked"}}
@@ -62,7 +64,7 @@
     {{!-- The global footer at the very bottom of the screen --}}
 
 
-    <footer class="custom-footer">
+    <footer class="custom-footer" style="margin-top: 48px;">
         <div class="navigation">
             <nav class="gh-head-menu">
                 {{navigation}}
@@ -75,25 +77,25 @@
         </div>
        
         <div class="footer-content">
-            <div class="left-section">
-                <div class="gh-head-brand">
+            <div class="left-section gap-4 mb-4">
+                <div class="gh-head-brand " style="margin-bottom: 48px;margin-top: 24px;">
                 <a class="gh-head-logo{{#unless @site.logo}} no-image{{/unless}}" href="{{@site.url}}" style="display: block;">
                     {{#if @site.logo}}
-                        <img src="{{@site.logo}}" alt="{{@site.title}}">
+                        <img src="{{@site.logo}}" alt="{{@site.title}}" width="100px" height="65px" >
                     {{else}}
                         {{@site.title}}
                     {{/if}}
                 </a>
             </div>
             <p>Cơ quan chủ quản: Đài truyền hình Việt Nam</p>
-            <p>Cơ quan báo chí: Thời báo VTV</p>
+            <p style="margin-bottom: 48px;">Cơ quan báo chí: Thời báo VTV</p>
             <p>Hotline:  (024) 3.8355931</p>
             <p>Email: toasoan@vtv.vn</p>
             <p>Website: ssstudy.vn</p>
             <p>Liên hệ quảng cáo: 02473007108</p>
             </div>
             <div class="right-section">
-                <div class="category">
+                <div class="category mb-4">
                     <div class="footer-title">
                         <a href="#">Danh mục</a>
                     </div>
@@ -119,7 +121,7 @@
                         <a href="#">SCTV</a>
                     </div>
                 </div>
-                <div class="helper">
+                <div class="helper mb-4">
                     <div class="footer-title">
                         <a href="#">Trợ giúp</a>
                     </div>
@@ -136,28 +138,28 @@
                         <a href="#">Chính sách bảo mật</a>
                     </div>
                     <div class="category-item">
-                        <div class="author-profile-meta">
-                        {{#if website}}
-                            <a class="author-profile-social-link" href="{{website}}" target="_blank" rel="noopener">{{website}}</a>
-                        {{/if}}
-                        {{#if twitter}}
-                            <a class="author-profile-social-link" href="{{twitter_url}}" target="_blank" rel="noopener">{{> "icons/twitter"}}</a>
-                        {{/if}}
-                        {{#if facebook}}
-                            <a class="author-profile-social-link" href="{{facebook_url}}" target="_blank" rel="noopener">{{> "icons/facebook"}}</a>
-                        {{/if}}
+                        <div class="flex gap-2 mt-4">
+                            <a class="author-profile-social-link" href="#" target="_blank" rel="noopener">{{> "icons/facebook2"}}</a>
+                            <a class="author-profile-social-link" href="#" target="_blank" rel="noopener">{{> "icons/ic_tw"}}</a>
+                            <a class="author-profile-social-link" href="#" target="_blank" rel="noopener">{{> "icons/instagram"}}</a>
+                            <a class="author-profile-social-link" href="#" target="_blank" rel="noopener">{{> "icons/linkedin"}}</a>
+                            <a class="author-profile-social-link" href="#" target="_blank" rel="noopener">{{> "icons/youtube"}}</a>
                     </div>
                     </div>            
                 </div>
-                <div class="download">
+                <div class="download mb-4">
                      <div class="footer-title">
-                        <a href="#">Tải ứng dụng</a>
+                        <a href="#" class="mb-4">Tải ứng dụng</a>
+                        <div class="flex flex-col mt-4">
+                            <a class="download-item" href="#" target="_blank" rel="noopener">{{> "icons/appstore"}}</a>
+                            <a class="download-item" href="#" target="_blank" rel="noopener">{{> "icons/googleplay"}}</a>
+                        </div>
                     </div>
                 </div>
             </div>
 
         </div>
-        <div class="footer-bottom">
+        <div class="footer-bottom text-primary text-2xl font-semibold">
             Giấy phép hoạt động báo in và báo điện tử số 483/GP-BTTTT cấp ngày 29/12/2023
         </div>
     </footer>

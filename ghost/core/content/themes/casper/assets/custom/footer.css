@@ -12,11 +12,17 @@
   grid-template-columns: 1fr;
   padding: 16px;
 }
-
+.custom-footer .right-section {
+    display: grid;
+    grid-template-columns: 1fr;
+}
 @media (min-width: 768px) {
   .custom-footer .footer-content{
     grid-template-columns: 1fr 1fr;
   }
+  .custom-footer .right-section {
+    grid-template-columns: 1fr 1fr 1fr;
+}
 }
 
 .custom-footer .footer-bottom {
@@ -24,10 +30,7 @@
   border: 1px solid #DBDBDB;
 }
 
-.custom-footer .right-section {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-}
+
 
 .footer-title {
     font-size: 1.5rem;
@@ -37,4 +40,32 @@
 }
 .site-content {
   background-color: #DBDBDB;
+}
+
+.custom-footer .footer-content p {
+    color: #242A4B;
+    font-size: 16px;
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+}
+.custom-footer .footer-content .category-item a {
+    color: #242A4B;
+    font-size: 16px;
+    font-family: "Inter", sans-serif;
+    font-weight: 500;
+}
+.custom-footer .footer-content .category-item a svg {
+    width: 36px;
+    height: 36px;
+}
+.custom-footer .footer-content .footer-title a {
+    color: #242A4B;
+    font-size: 20px;
+    font-family: "Inter", sans-serif;
+    font-weight: 700;
+    margin-bottom: 32px;
+}
+.custom-footer .footer-content .download-item svg {
+  width: 170px;
+  height: 40px;
 }

@@ -39,16 +39,49 @@ into the {body} of the default.hbs template --}}
 
 {{!-- The main content area --}}
 <main id="site-main" class="site-main outer">
-<div class="inner posts">
-
-    <div class="post-feed">
-        {{#foreach posts}}
-            {{!-- The tag below includes the markup for each post - partials/post-card.hbs --}}
-            {{> "post-card"}}
-        {{/foreach}}
+    <div class="inner">
+        <div class="grid grid-cols-2 gap-4 focus-news mt-4">
+            <div class="news" style="background-color: #EBEEF3; padding: 24px;">
+                <div class="news-header flex gap-4 align-center">
+                    {{> "icons/arrow-right"}}
+                    <div class="text-4xl font-semibold">Tin tiêu điểm</div>
+                </div>
+                
+                <div class="post-feed">
+                    {{#foreach posts}}
+                    {{!-- The tag below includes the markup for each post - partials/post-card.hbs --}}
+                    {{> "post-card"}}
+                    {{/foreach}}
+                </div>
+                {{pagination}}
+            </div>
+            <div class="stock">
+                <iframe
+                    src="https://widget.dnse.com.vn/index-widget?theme=white&indexes=VNINDEX%2CVN30%2CHNX30%2CHNX%2CUPCOM"
+                    frameborder="0" 
+                    width="100%"
+                    height="600px"/>
+            </div>
+        </div>
+        <div>
+             {{> "icons/arrow-right"}}
+            Gương mặt doanh nhân Việt
+        </div>
+        
+        <div>
+             {{> "icons/arrow-right"}}
+            Sự kiện kinh tế Việt Nam
+        </div>
+         <div>
+             {{> "icons/arrow-right"}}
+            Tin tức VTV Index
+            <div class="post-feed">
+                    {{#foreach posts}}
+                    {{!-- The tag below includes the markup for each post - partials/post-card.hbs --}}
+                {{> "post-card"}}
+                {{/foreach}}
+            </div>
+            {{pagination}}
+        </div>
     </div>
-
-    {{pagination}}
-
-</div>
 </main>
