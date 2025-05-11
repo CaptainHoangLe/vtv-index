@@ -28,6 +28,6 @@ jobs:
           fi
           
           docker compose down
-          docker compose up -d
+          docker compose --profile ghost up -d
           
           echo "Deployment completed successfully!"
