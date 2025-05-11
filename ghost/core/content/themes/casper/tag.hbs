@@ -1,55 +1,101 @@
-{{!< default}}
-{{!-- The tag above means - insert everything in this file into the {body} of the default.hbs template --}}
+<link rel="stylesheet" href="{{asset "custom/breadcrumb-navigation.css"}}">
 
-<main id="site-main" class="site-main outer">
-<div class="inner posts">
-    <div class="post-feed">
+{{!< default}} {{!-- The tag above means - insert everything in this file into the {body} of the default.hbs template
+    --}} <main id="site-main" class="site-main outer">
+    <div class="inner">
+        {{!-- Breadcrumb Navigation --}}
+          <div class="breadcrumb-navigation">
+            <a href="{{@site.url}}" class="home">Trang chủ</a>
+                        {{> "icons/chevron-right"}}
 
-        {{#tag}}
-        <section class="post-card post-card-large">
+            <span class="tag-name">
+                {{#if tag}}
+                {{tag.name}}
+                {{/if}}
+            </span>
+        </div>
 
-            {{#if feature_image}}
-            <div class="post-card-image-link">
-                {{!-- This is a responsive image, it loads different sizes depending on device
-                https://medium.freecodecamp.org/a-guide-to-responsive-images-with-ready-to-use-templates-c400bd65c433 --}}
-                <img class="post-card-image"
-                    srcset="{{img_url feature_image size="s"}} 300w,
-                            {{img_url feature_image size="m"}} 600w,
-                            {{img_url feature_image size="l"}} 1000w,
-                            {{img_url feature_image size="xl"}} 2000w"
-                    sizes="(max-width: 1000px) 400px, 800px"
-                    src="{{img_url feature_image size="m"}}"
-                    alt="{{title}}"
-                />
+        {{!-- Post Feed Section --}}
+        <div class="posts">
+            <div class="main-post">
+                {{#with (split_first_post posts first=true)}}
+                {{> "highlight-news" title=title image=feature_image date=date url=url}}
+                {{/with}}
             </div>
-            {{/if}}
-
-            <div class="post-card-content">
-            <div class="post-card-content-link">
-                <header class="post-card-header">
-                    <h2 class="post-card-title">{{name}}</h2>
-                </header>
-                <div class="post-card-excerpt">
-                    {{#if description}}
-                        {{description}}
+            <div class="left-post">
+                <div class="feature-post__heading"> {{> "icons/arrow-right"}}
+                    <span>Tin tiêu điểm</span>
+                </div>
+                <div class="feature-post">
+                    {{#foreach (featured_posts posts)}}
+                    {{!-- <div class="post-card">
+                        {{#if feature_image}}
+                        <div class="post-card-image">
+                            <img src="{{feature_image}}" alt="{{title}}">
+                        </div>
+                        {{/if}}
+                        <div class="post-card-content">
+                            <h4 class="post-card-title">{{title}}</h4>
+                            <div class="post-card-excerpt">{{excerpt words="20"}}</div>
+                            <div class="post-card-meta">
+                                <time datetime="{{date format=" YYYY-MM-DD"}}">{{date format="DD/MM/YYYY"}}</time>
+                            </div>
+                            <a class="post-card-link" href="{{url}}">Xem thêm</a>
+                        </div>
+                    </div> --}}
+                    {{> "featured-news" url=url image=feature_image title=title description=excerpt date=date}}
                     {{else}}
-                        A collection of {{plural ../pagination.total empty='zero posts' singular='% post' plural='% posts'}}
-                    {{/if}}
+                    <p>Không có bài viết nào khác</p>
+                    {{/foreach}}
                 </div>
             </div>
-            </div>
+        </div>
 
-        </section>
-        {{/tag}}
-
-        {{#foreach posts}}
-            {{!-- The tag below includes the markup for each post - partials/post-card.hbs --}}
-            {{> "post-card"}}
-        {{/foreach}}
-
+        {{pagination}}
     </div>
+    </main>
 
-    {{pagination}}
-    
-</div>
-</main>
+    {{!-- Add inline styles for the layout --}}
+    <style>
+        .feature-post__heading {
+            font-size: 32px;
+            font-weight: 600;
+            color: #262626;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .posts {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+
+        .main-post {
+            flex: 2;
+        }
+
+        .main-post .hightlight-news {
+            height: 100%;
+        }
+
+        .left-post {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            padding: 25px;
+            gap: 20px;
+            background-color: #EBEEF3;
+        }
+
+        .feature-post {
+            flex: 3;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 30px;
+        }
+    </style>

@@ -1,0 +1,22 @@
+.breadcrumb-navigation {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #242A4B;
+}
+
+.breadcrumb-navigation .home,
+.breadcrumb-navigation .tag-item > a {
+    color: #242A4B;
+
+    font-weight: 500;
+}
+
+.breadcrumb-navigation .tag-name {
+    font-weight: 700;
+}
+
+.inner {
+    max-width: 1200px;
+}

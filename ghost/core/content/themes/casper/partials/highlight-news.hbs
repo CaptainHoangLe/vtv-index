@@ -1,0 +1,58 @@
+<a class="hightlight-news" href="{{url}}">
+    <div class="main-post">
+        {{#if image}}
+        <img src="{{image}}" alt="{{@site.title}}" />
+        {{/if}}
+        <div class="main-post-overlay">
+            <div class="featured-post-meta">
+                <time datetime="{{date format=" YYYY-MM-DD"}}">{{date
+                    format="DD/MM/YYYY"
+                    }}</time>
+            </div>
+            <h2 class="title">{{title}}</h2>
+        </div>
+    </div>
+</a>
+
+<style>
+    .hightlight-news {
+        position: relative;
+        display: block;
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .main-post {
+        position: relative;
+        overflow: hidden;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0,
+                0.1);
+        transition: transform 0.3s ease;
+        border-radius: 0px;
+    }
+
+    .main-post>img {
+        width: 100%;
+        height: 675px;
+        object-fit: cover;
+        border-radius: 0px;
+    }
+
+    .main-post-overlay {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        padding: 20px;
+    }
+
+    .title {
+        margin: 0;
+    }
+</style>
