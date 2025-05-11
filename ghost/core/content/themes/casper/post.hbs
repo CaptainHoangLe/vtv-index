@@ -1,113 +1,69 @@
-{{!< default}}
+<link rel="stylesheet" href="{{asset " custom/breadcrumb-navigation.css"}}">
 
-{{!-- The tag above means: insert everything in this file
-into the {body} tag of the default.hbs template --}}
+{{!< default}} {{!-- The tag above means: insert everything in this file into the {body} tag of the default.hbs template
+    --}} {{#post}} {{!-- Everything inside the #post block pulls data from the post --}} <div class="inner">
+    <div class="post breadcrumb-navigation">
+        <a href="{{@site.url}}" class="home">Trang chủ</a>
+        {{> "icons/chevron-right"}}
 
-
-{{#post}}
-{{!-- Everything inside the #post block pulls data from the post --}}
-
-<main id="site-main" class="site-main">
-<article class="article {{post_class}} {{#match @custom.post_image_style " Full"}}image-full{{else match
-    @custom.post_image_style "=" "Small" }}image-small{{/match}}">
-    <header class="article-header gh-canvas">
-        {{!-- Breadcrumb Navigation --}}
-        <div class="breadcrumb-navigation">
-            <a href="{{@site.url}}">Home</a>
+        <span class="tag-item">
             {{#primary_tag}}
-            <span> &gt; </span><a href="{{url}}">{{name}}</a>
+            <a href="{{url}}">{{name}}</a>
             {{/primary_tag}}
-            <span> &gt; </span><span>{{title}}</span>
-        </div>
-        <style>
-            .breadcrumb-navigation {
-                margin-bottom: 20px;
-                font-size: 14px;
-                color: #738a94;
-            }
-        
-            .breadcrumb-navigation a {
-                color: #15171A;
-                text-decoration: none;
-            }
-        
-            .breadcrumb-navigation a:hover {
-                text-decoration: underline;
-            }
-        </style>
-        
-        {{!-- Public Vietnamese Date Display --}}
-        <div class="public-date">
-            <span class="public-date-icon">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                    <line x1="16" y1="2" x2="16" y2="6"></line>
-                    <line x1="8" y1="2" x2="8" y2="6"></line>
-                    <line x1="3" y1="10" x2="21" y2="10"></line>
-                </svg>
-            </span>
-            <span class="public-date-text">{{vn_date published_at}}</span>
-        </div>
-        <style>
-            .public-date {
-                display: flex;
-                align-items: center;
-                margin-bottom: 20px;
-                font-size: 14px;
-                color: #15171A;
-            }
-        
-            .public-date-icon {
-                margin-right: 6px;
-                color: #738a94;
-            }
-        
-            .public-date-text {
-                font-weight: 500;
-            }
-        </style>
-
-        <h1 class="article-title">{{title}}</h1>
-
-        {{#match @custom.post_image_style "!=" "Hidden"}}
-        {{#if feature_image}}
-            <figure class="article-image">
-                {{!-- This is a responsive image, it loads different sizes depending on device
-                https://medium.freecodecamp.org/a-guide-to-responsive-images-with-ready-to-use-templates-c400bd65c433 --}}
-                <img
-                    srcset="{{img_url feature_image size="s"}} 300w,
-                            {{img_url feature_image size="m"}} 600w,
-                            {{img_url feature_image size="l"}} 1000w,
-                            {{img_url feature_image size="xl"}} 2000w"
-                    sizes="(min-width: 1400px) 1400px, 92vw"
-                    src="{{img_url feature_image size="xl"}}"
-                    alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}"
-                />
-                {{#if feature_image_caption}}
-                    <figcaption>{{feature_image_caption}}</figcaption>
+        </span>
+        {{> "icons/chevron-right"}}
+        <span class="tag-name">
+            <span>{{title}}</span>
+        </span>
+    </div>
+    </div>
+    
+    <main id="site-main" class="inner post-content">
+        <article>
+            <header>
+                <h1 class="post__heading">{{title}}</h1>
+                <div class="post-calendar">
+                   {{>"icons/post-calendar"}} {{!-- This tag outputs the date of the post --}}
+                    <span>{{vn_date published_at}}</span>
+                </div>
+                {{#match @custom.post_image_style "!=" "Hidden"}}
+                {{#if excerpt}}
+                <div class="post__excerpt">
+                    {{!-- This tag outputs the excerpt of the post --}}
+                    {{excerpt}}
                 {{/if}}
-            </figure>
-        {{/if}}
-        {{/match}}
+                {{#if feature_image}}
+                <figure class="article-image">
+                    {{!-- This is a responsive image, it loads different sizes depending on device
+                    https://medium.freecodecamp.org/a-guide-to-responsive-images-with-ready-to-use-templates-c400bd65c433
+                    --}}
+                    <img srcset="{{img_url feature_image size=" s"}} 300w, {{img_url feature_image size="m" }} 600w,
+                        {{img_url feature_image size="l" }} 1000w, {{img_url feature_image size="xl" }} 2000w"
+                        sizes="(min-width: 1400px) 1400px, 92vw" src="{{img_url feature_image size=" xl"}}"
+                        alt="{{#if feature_image_alt}}{{feature_image_alt}}{{else}}{{title}}{{/if}}" />
+                    {{#if feature_image_caption}}
+                    <figcaption>{{feature_image_caption}}</figcaption>
+                    {{/if}}
+                </figure>
+                {{/if}}
+                {{/match}}
 
-    </header>
-
-    <section class="gh-content gh-canvas">
+            </header>
+            <section class="gh-content">
         {{content}}
     </section>
 
-    {{#if comments}}
-        <section class="article-comments gh-canvas">
-            {{comments}}
-        </section>
-    {{/if}}
+            {{#if comments}}
+            <section class="">
+                {{comments}}
+            </section>
+            {{/if}}
 
-</article>
-</main>
+        </article>
+    </main>
 
-{{!-- Read more links, just above the footer --}}
-{{#if @custom.show_recent_posts_footer}}
+    {{!-- Read more links, just above the footer --}}
+    {{#if @custom.show_recent_posts_footer}}
     {{!-- The {#get} helper below fetches some of the latest posts here
     so that people have something else to read when they finish this one.
 
@@ -115,17 +71,17 @@ into the {body} tag of the default.hbs template --}}
     exclude the post we're currently on from being included. --}}
     {{#get "posts" filter="id:-{{id}}" limit="3" as |more_posts|}}
 
-        {{#if more_posts}}
-            <aside class="read-more-wrap outer">
-                <div class="read-more inner">
-                    {{#foreach more_posts}}
-                        {{> "post-card"}}
-                    {{/foreach}}
-                </div>
-            </aside>
-        {{/if}}
+    {{#if more_posts}}
+    <aside class="read-more-wrap outer">
+        <div class="read-more inner">
+            {{#foreach more_posts}}
+            {{> "post-card"}}
+            {{/foreach}}
+        </div>
+    </aside>
+    {{/if}}
 
     {{/get}}
-{{/if}}
+    {{/if}}
 
-{{/post}}
+    {{/post}}

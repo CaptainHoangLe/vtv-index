@@ -1,188 +1,101 @@
-{{!< default}}
-{{!-- The tag above means - insert everything in this file into the {body} of the default.hbs template --}}
+<link rel="stylesheet" href="{{asset "custom/breadcrumb-navigation.css"}}">
 
-<main id="site-main" class="site-main outer">
-<div class="inner">
-    {{!-- Breadcrumb Navigation --}}
-    <div class="breadcrumb-navigation">
-        <a href="{{@site.url}}">Trang chủ</a>
-        <span> &gt; </span>
-        <span>
-            {{#if tag}}
-            {{tag.name}}
-            {{/if}}
-        </span>
-    </div>
+{{!< default}} {{!-- The tag above means - insert everything in this file into the {body} of the default.hbs template
+    --}} <main id="site-main" class="site-main outer">
+    <div class="inner">
+        {{!-- Breadcrumb Navigation --}}
+          <div class="breadcrumb-navigation">
+            <a href="{{@site.url}}" class="home">Trang chủ</a>
+                        {{> "icons/chevron-right"}}
 
-    {{!-- Post Feed Section --}}
-<div class="highlight-news">
-    <div class="main-post">
-        {{#with (split_first_post posts first=true)}}
-        <div class="featured-post">
-                    <h3 class="column-title">Bài viết nổi bật</h3>
-                    <div class="featured-post-card">
+            <span class="tag-name">
+                {{#if tag}}
+                {{tag.name}}
+                {{/if}}
+            </span>
+        </div>
+
+        {{!-- Post Feed Section --}}
+        <div class="posts">
+            <div class="main-post">
+                {{#with (split_first_post posts first=true)}}
+                {{> "highlight-news" title=title image=feature_image date=date url=url}}
+                {{/with}}
+            </div>
+            <div class="left-post">
+                <div class="feature-post__heading"> {{> "icons/arrow-right"}}
+                    <span>Tin tiêu điểm</span>
+                </div>
+                <div class="feature-post">
+                    {{#foreach (featured_posts posts)}}
+                    {{!-- <div class="post-card">
                         {{#if feature_image}}
-                        <div class="featured-post-image">
+                        <div class="post-card-image">
                             <img src="{{feature_image}}" alt="{{title}}">
                         </div>
                         {{/if}}
-                        <div class="featured-post-content">
-                            <h2 class="featured-post-title">{{title}}</h2>
-                            <div class="featured-post-excerpt">{{excerpt words="50"}}</div>
-                            <div class="featured-post-meta">
+                        <div class="post-card-content">
+                            <h4 class="post-card-title">{{title}}</h4>
+                            <div class="post-card-excerpt">{{excerpt words="20"}}</div>
+                            <div class="post-card-meta">
                                 <time datetime="{{date format=" YYYY-MM-DD"}}">{{date format="DD/MM/YYYY"}}</time>
                             </div>
-                            <a class="featured-post-link" href="{{url}}">Xem chi tiết</a>
-                        </div>
-                    </div>
-                    </div>
-                    {{else}}
-                <p>Không có bài viết nổi bật</p>
-                {{/with}}
-                </div>
-                
-                <div class="featured-posts">
-                    <h3 class="section-title">▶ Tin tiêu điểm</h3>
-                
-                    {{!-- <div class="post-item">
-                        <img src="/thumb1.jpg" alt="thumb">
-                        <div class="post-info">
-                            <p class="date">🗓 05/08/2025</p>
-                            <h4>VN-Index vượt mốc 1.330 điểm</h4>
-                            <p class="excerpt">Chứng khoán Việt Nam vừa trải qua phiên đầu tuần khởi sắc...</p>
-                        </div>
-                    </div>
-                
-                    <div class="post-item">
-                        <img src="/thumb2.jpg" alt="thumb">
-                        <div class="post-info">
-                            <p class="date">🗓 05/08/2025</p>
-                            <h4>Khối ngoại “quay đầu” bán ròng trở lại</h4>
-                            <p class="excerpt">Sau chuỗi 5 phiên mua ròng tích cực...</p>
-                        </div>
-                    </div>
-                
-                    <div class="post-item">
-                        <img src="/thumb3.jpg" alt="thumb">
-                        <div class="post-info">
-                            <p class="date">🗓 05/08/2025</p>
-                            <h4>Chứng khoán tăng mạnh</h4>
-                            <p class="excerpt">Thị trường chứng khoán tiếp tục hồi phục theo xu thế tích cực...</p>
+                            <a class="post-card-link" href="{{url}}">Xem thêm</a>
                         </div>
                     </div> --}}
-                    <div class="left-column">
-                        <div class="other-posts">
-                            {{#foreach (split_first_post posts first=false)}}
-                            <div class="post-card">
-                                {{#if feature_image}}
-                                <div class="post-card-image">
-                                    <img src="{{feature_image}}" alt="{{title}}">
-                                </div>
-                                {{/if}}
-                                <div class="post-card-content">
-                                    <h4 class="post-card-title">{{title}}</h4>
-                                    <div class="post-card-excerpt">{{excerpt words="20"}}</div>
-                                    <div class="post-card-meta">
-                                        <time datetime="{{date format=" YYYY-MM-DD"}}">{{date format="DD/MM/YYYY"}}</time>
-                                    </div>
-                                    <a class="post-card-link" href="{{url}}">Xem thêm</a>
-                                </div>
-                            </div>
-                            {{else}}
-                            <p>Không có bài viết nào khác</p>
-                            {{/foreach}}
+                    {{> "featured-news" url=url image=feature_image title=title description=excerpt date=date}}
+                    {{else}}
+                    <p>Không có bài viết nào khác</p>
+                    {{/foreach}}
                 </div>
-                </div>
-                
-                </div>
-                </div>
+            </div>
+        </div>
 
-    {{pagination}}
-</div>
-</main>
+        {{pagination}}
+    </div>
+    </main>
 
-{{!-- Add inline styles for the layout --}}
-<style>
-    .highlight-news {
-        display: flex;
-        gap: 24px;
-        margin: 40px 0;
-    }
+    {{!-- Add inline styles for the layout --}}
+    <style>
+        .feature-post__heading {
+            font-size: 32px;
+            font-weight: 600;
+            color: #262626;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-    .main-post {
-        position: relative;
-        flex: 2;
-        border-radius: 8px;
-        overflow: hidden;
-    }
+        .posts {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
 
-    .main-post img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
+        .main-post {
+            flex: 2;
+        }
 
-    .main-post-overlay {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        background: rgba(0, 0, 0, 0.6);
-        color: white;
-        padding: 16px;
-        width: 100%;
-    }
+        .main-post .hightlight-news {
+            height: 100%;
+        }
 
-    .main-post .title {
-        font-size: 1.4em;
-        font-weight: bold;
-        margin-top: 8px;
-    }
+        .left-post {
+            flex: 2;
+            display: flex;
+            flex-direction: column;
+            padding: 25px;
+            gap: 20px;
+            background-color: #EBEEF3;
+        }
 
-    .featured-posts {
-        flex: 1;
-    }
-
-    .section-title {
-        font-weight: bold;
-        font-size: 1.2em;
-        margin-bottom: 16px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        color: #c00;
-    }
-
-    .post-item {
-        display: flex;
-        gap: 12px;
-        margin-bottom: 16px;
-    }
-
-    .post-item img {
-        width: 96px;
-        height: 72px;
-        object-fit: cover;
-        border-radius: 4px;
-    }
-
-    .post-info {
-        flex: 1;
-    }
-
-    .post-info .date {
-        font-size: 0.75em;
-        color: gray;
-        margin-bottom: 4px;
-    }
-
-    .post-info h4 {
-        font-size: 1em;
-        margin: 0;
-        font-weight: bold;
-    }
-
-    .post-info .excerpt {
-        font-size: 0.85em;
-        color: #555;
-    }
-</style>
+        .feature-post {
+            flex: 3;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 30px;
+        }
+    </style>
